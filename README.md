@@ -23,7 +23,7 @@ Foundation setup screenshots: [`phase1-foundation/`](./phase1-foundation)
 | 002 | S3 upload failing ("Access Denied") | Bucket policy explicitly denied `s3:*` to all principals | CloudTrail — `PutBucketPolicy` | Deleted the Deny policy (explicit Deny overrides even AdministratorAccess) | ~10 min |
 | 003 | EC2 console access denied | Inline IAM policy explicitly denied `ec2:DescribeInstances` | CloudTrail — `PutUserPolicy` | Removed the inline Deny policy from the IAM user | ~15 min |
 
-Full write-ups with screenshots for each: [`ticket-001.md`](./phase2-security-group-breakfix/Ticket-001.md) · [`ticket-002.md`](./phase3-s3-policy-breakfix/Ticket-002.md) · [`ticket-003.md`](./phase4-iam-breakfix/Ticket-003.md)
+Full write-ups with screenshots for each: [`Ticket-001.md`](./phase2-security-group-breakfix/Ticket-001.md) · [`Ticket-002.md`](./phase3-s3-policy-breakfix/Ticket-002.md) · [`Ticket-003.md`](./phase4-iam-breakfix/Ticket-003.md)
 
 ## Key Learnings
 
