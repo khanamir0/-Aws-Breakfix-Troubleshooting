@@ -6,13 +6,18 @@
 ## Issue
 The EC2 instance became sluggish, with commands and the terminal session responding very slowly. CPU usage needed to be investigated as the likely cause.
 
-![CPU Spike](./02-cpu-spike-top.png)
 
 ## Cause
 A runaway process (`yes`) was consuming 100% of a CPU core continuously. This simulated a common real-world scenario where a misbehaving or runaway process consumes all available CPU, starving other processes (including the application and even the terminal session itself) of resources.
 
 ## Diagnosis
 Ran `top` to view live process activity. The output clearly showed the `yes` process at the top of the list, consuming `100.0%` CPU, with `%Cpu(s)` confirming high overall CPU usage across the system.
+
+Normal baseline before the incident:
+
+![CPU Normal](./01-cpu-normal.png)
+
+During the incident, with the `yes` process at the top:
 
 ![Top Output Confirming Culprit](./02-cpu-spike-top.png)
 
