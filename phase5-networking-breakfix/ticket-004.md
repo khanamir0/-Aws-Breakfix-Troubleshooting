@@ -11,6 +11,12 @@ The website (over HTTP) and SSH access to the EC2 instance both became unreachab
 ## Cause
 The subnet's route table had its `0.0.0.0/0 → Internet Gateway` route removed, leaving only the default `local` route. With no route out of the subnet, traffic to and from the public internet had nowhere to go — which is why both HTTP and SSH timed out instead of connecting or being actively refused.
 
+Before the change, the route table had both the `local` route and the `0.0.0.0/0` route to the Internet Gateway:
+
+![Healthy Route Table](./01-route-table-healthy.png)
+
+After the change, only the `local` route remained:
+
 ![Broken Route Table](./03-route-table-broken.png)
 
 ## Diagnosis
@@ -26,7 +32,9 @@ CloudTrail Event History confirmed the exact change:
 ## Resolution
 Re-added the missing route in the subnet's route table: Destination `0.0.0.0/0`, Target set to the VPC's Internet Gateway. Verified the fix by reloading the website and reconnecting over SSH — both worked normally within a minute.
 
-![Fixed](./06-site-restored.png)
+![Route Table Fixed](./05-route-table-fixed.png)
+
+![Site Restored](./06-site-restored.png)
 
 ## Time to Resolve
 ~10 minutes
